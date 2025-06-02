@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Elite - Cirurgias Plásticas</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #e0e0e0;
+            --white: #ffffff;
+            --black: #000000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gold);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--black);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-gray);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .procedures {
+            background-color: var(--light-gray);
+        }
+        
+        .procedure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .procedure-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .procedure-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .procedure-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .procedure-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .procedure-card:hover .procedure-img img {
+            transform: scale(1.1);
+        }
+        
+        .procedure-info {
+            padding: 25px;
+        }
+        
+        .procedure-info h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+        
+        .procedure-info p {
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .details-btn {
+            display: inline-block;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .details-btn:hover {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .about-content p {
+            margin-bottom: 15px;
+            color: var(--medium-gray);
+        }
+        
+        .specialists {
+            background-color: var(--light-gray);
+        }
+        
+        .specialist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .specialist-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .specialist-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid var(--gold);
+        }
+        
+        .specialist-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .specialist-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--dark-gray);
+        }
+        
+        .specialist-card p {
+            color: var(--medium-gray);
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--gold);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--dark-gray);
+        }
+        
+        .contact {
+            background-color: var(--white);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            color: var(--medium-gray);
+        }
+        
+        .contact-info i {
+            color: var(--gold);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background-color: var(--dark-gray);
+            color: var(--white);
+        }
+        
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Clínica Elite</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#procedures">Procedimentos</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#specialists">Especialistas</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Excelência em Cirurgia Plástica</h1>
+                <p>Transformando vidas através de procedimentos seguros e resultados naturais</p>
+                <a href="#contact" class="btn">Agende sua Consulta</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="procedures" id="procedures">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Procedimentos</h2>
+            </div>
+            <div class="procedure-grid">
+                <div class="procedure-card">
+                    <div class="procedure-img">
+                        <img src="https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rinoplastia">
+                    </div>
+                    <div class="procedure-info">
+                        <h3>Rinoplastia</h3>
+                        <p>Cirurgia para remodelar o nariz, melhorando a harmonia facial e a função respiratória.</p>
+                        <div class="price">R$ 12.000 - R$ 18.000</div>
+                        <a href="#" class="details-btn">Saiba Mais</a>
+                    </div>
+                </div>
+                
+                <div class="procedure-card">
+                    <div class="procedure-img">
+                        <img src="https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mamoplastia">
+                    </div>
+                    <div class="procedure-info">
+                        <h3>Mamoplastia</h3>
+                        <p>Redução, aumento ou levantamento das mamas para melhorar proporção e autoestima.</p>
+                        <div class="price">R$ 15.000 - R$ 25.000</div>
+                        <a href="#" class="details-btn">Saiba Mais</a>
+                    </div>
+                </div>
+                
+                <div class="procedure-card">
+                    <div class="procedure-img">
+                        <img src="https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lipoaspiração">
+                    </div>
+                    <div class="procedure-info">
+                        <h3>Lipoaspiração</h3>
+                        <p>Remoção de depósitos localizados de gordura para contornar o corpo.</p>
+                        <div class="price">R$ 8.000 - R$ 15.000</div>
+                        <a href="#" class="details-btn">Saiba Mais</a>
+                    </div>
+                </div>
+                
+                <div class="procedure-card">
+                    <div class="procedure-img">
+                        <img src="https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blefaroplastia">
+                    </div>
+                    <div class="procedure-info">
+                        <h3>Blefaroplastia</h3>
+                        <p>Cirurgia das pálpebras para remover excesso de pele e gordura, rejuvenescendo o olhar.</p>
+                        <div class="price">R$ 7.000 - R$ 12.000</div>
+                        <a href="#" class="details-btn">Saiba Mais</a>
+                    </div>
+                </div>
+                
+                <div class="procedure-card">
+                    <div class="procedure-img">
+                        <img src="https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Abdominoplastia">
+                    </div>
+                    <div class="procedure-info">
+                        <h3>Abdominoplastia</h3>
+                        <p>Remoção de excesso de pele e gordura abdominal e fortalecimento da musculatura.</p>
+                        <div class="price">R$ 15.000 - R$ 25.000</div>
+                        <a href="#" class="details-btn">Saiba Mais</a>
+                    </div>
+                </div>
+                
+                <div class="procedure-card">
+                    <div class="procedure-img">
+                        <img src="https://images.unsplash.com/photo-1551601651-bc60f254d532?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Otoplastia">
+                    </div>
+                    <div class="procedure-info">
+                        <h3>Otoplastia</h3>
+                        <p>Correção de deformidades ou assimetrias das orelhas, comum em crianças e adultos.</p>
+                        <div class="price">R$ 6.000 - R$ 10.000</div>
+                        <a href="#" class="details-btn">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>Sobre a Clínica Elite</h2>
+                <p>A Clínica Elite é referência em cirurgia plástica, oferecendo procedimentos seguros e resultados naturais. Nossa equipe é composta por especialistas altamente qualificados, com formação nas melhores instituições do país e do exterior.</p>
+                <p>Priorizamos o bem-estar e a satisfação dos nossos pacientes, oferecendo atendimento personalizado e acompanhamento completo no pré e pós-operatório.</p>
+                <p>Nossa infraestrutura conta com centro cirúrgico equipado com tecnologia de ponta e seguindo todos os protocolos de segurança, garantindo conforto e tranquilidade em todos os procedimentos.</p>
+                <a href="#specialists" class="btn">Conheça Nossos Especialistas</a>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Clínica Elite">
+            </div>
+        </div>
+    </section>
+
+    <section class="specialists" id="specialists">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Especialistas</h2>
+            </div>
+            <div class="specialist-grid">
+                <div class="specialist-card">
+                    <div class="specialist-img">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Dr. Carlos Mendes">
+                    </div>
+                    <h3>Dr. Carlos Mendes</h3>
+                    <p>CRM: 12345</p>
+                    <p>Especialista em Rinoplastia e Blefaroplastia</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="specialist-card">
+                    <div class="specialist-img">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Dra. Ana Lúcia">
+                    </div>
+                    <h3>Dra. Ana Lúcia</h3>
+                    <p>CRM: 54321</p>
+                    <p>Especialista em Mamoplastia e Lipoaspiração</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="specialist-card">
+                    <div class="specialist-img">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Dr. Roberto Almeida">
+                    </div>
+                    <h3>Dr. Roberto Almeida</h3>
+                    <p>CRM: 67890</p>
+                    <p>Especialista em Abdominoplastia e Otoplastia</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 - São Paulo/SP</p>
+                    <p><i class="fas fa-phone"></i> (11) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> contato@clinicaelite.com.br</p>
+                    <p><i class="fas fa-clock"></i> Seg-Sex: 8h às 18h | Sáb: 9h às 13h</p>
+                    
+                    <h3 style="margin-top: 30px;">Formas de Pagamento</h3>
+                    <p>Aceitamos todos os cartões de crédito, débito, transferência bancária e parcelamos em até 12x.</p>
+                    <p>Também trabalhamos com os principais planos de saúde e oferecemos condições especiais para pagamento à vista.</p>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Seu Nome" required>
+                        <input type="email" placeholder="Seu E-mail" required>
+                        <input type="tel" placeholder="Seu Telefone">
+                        <select style="width: 100%; padding: 12px 15px; margin-bottom: 20px; border: 1px solid var(--light-gray); border-radius: 5px; font-size: 16px;">
+                            <option value="">Selecione o Procedimento</option>
+                            <option value="rinoplastia">Rinoplastia</option>
+                            <option value="mamoplastia">Mamoplastia</option>
+                            <option value="lipoaspiração">Lipoaspiração</option>
+                            <option value="blefaroplastia">Blefaroplastia</option>
+                            <option value="abdominoplastia">Abdominoplastia</option>
+                            <option value="otoplastia">Otoplastia</option>
+                        </select>
+                        <textarea placeholder="Sua Mensagem"></textarea>
+                        <button type="submit">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Clínica Elite</h3>
+                    <p>Excelência em cirurgia plástica, oferecendo procedimentos seguros e resultados naturais desde 2005.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Procedimentos</h3>
+                    <ul>
+                        <li><a href="#">Rinoplastia</a></li>
+                        <li><a href="#">Mamoplastia</a></li>
+                        <li><a href="#">Lipoaspiração</a></li>
+                        <li><a href="#">Blefaroplastia</a></li>
+                        <li><a href="#">Abdominoplastia</a></li>
+                        <li><a href="#">Otoplastia</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#procedures">Procedimentos</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#specialists">Especialistas</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Redes Sociais</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Clínica Elite - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome para ícones -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
